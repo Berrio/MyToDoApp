@@ -1,13 +1,17 @@
 import { useState } from 'react'
-
+import StoreProvider from './components/StoreProvider'
 import './App.css'
+import ListOfToDo from './components/ListOfToDo'
 
 function App() {
 
   return (
-    <div className="App">
-      hello
-    </div>
+    <StoreProvider>
+     <p>hello </p> 
+     <ListOfToDo />
+
+
+    </StoreProvider>
   )
 }
 
