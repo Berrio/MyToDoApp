@@ -2,14 +2,16 @@ import { useState } from 'react'
 import StoreProvider from './components/StoreProvider'
 import './App.css'
 import ListOfToDo from './components/ListOfToDo'
+import Form from './components/Form'
 
 function App() {
 
   return (
     <StoreProvider>
      <p>hello </p> 
+     <Form></Form>
      <ListOfToDo />
-
+    
 
     </StoreProvider>
   )
