@@ -1,9 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef } from "react";
 import { Store } from './StoreProvider'
 
 const Form = () => {
+
+    const formRef = useRef(null)
     const onAdd = (event) => {
         event.preventDefault();
+        console.log(title)
+        console.log(message)
         if (title && message) {
             dispatch({
                 type: 'add-note',
@@ -12,6 +16,7 @@ const Form = () => {
                     message
                 }
             })
+            formRef.current.reset();
         }
     }
 
@@ -22,18 +27,18 @@ const Form = () => {
     const [message, setMessage] = useState('');
 
     const addingTitle = (e) => {
-        setTitle = (e.tarjet.value)
+        setTitle(e.target.value)
     }
     const addingMessage = (e) => {
-        setMessage = (e.tarjet.value)
+        setMessage(e.target.value)
     }
 
 
     return (
-        <form action="">
-            label<label htmlFor=""></label>
+        <form ref={formRef}>
+            <label >title</label>
             <input onChange={addingTitle} type="text" name="title" />
-            <label htmlFor="">Message</label>
+            <label >Message</label>
             <input onChange={addingMessage} type="text" name="message" />
             <button onClick={onAdd}>Add note</button>
         </form>
