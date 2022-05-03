@@ -4,17 +4,32 @@ import { Store } from './StoreProvider'
 const Form = () => {
 
     const formRef = useRef(null)
-    const onAdd = (event) => {
+
+  
+    const onAdd = async (event) => {
         event.preventDefault();
         console.log(title)
         console.log(message)
         if (title && message) {
+            const noteFromForm={
+                title,
+                message,
+                done:false
+            }
+            let noteSavePromise = await fetch(`http://localhost:8081/api/save/note`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body:JSON.stringify(noteFromForm)
+        })
+
+        let noteSaved = await noteSavePromise.json();
+        console.log(noteSaved)
             dispatch({
                 type: 'add-note',
-                payload: {
-                    title,
-                    message
-                }
+                payload: noteSaved
             })
             formRef.current.reset();
         }
