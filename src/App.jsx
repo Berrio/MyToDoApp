@@ -8,7 +8,6 @@ function App() {
 
   return (
     <StoreProvider>
-     <p>hello </p> 
      <Form></Form>
      <ListOfToDo />
     
